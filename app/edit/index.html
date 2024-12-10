@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/style.css">
+        <link rel="stylesheet" href="../../css/app.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+        <title>Editing untitled test</title>
+    </head>
+    <body>
+        <header>
+            <div class="header-content">
+                <a href="/">EXAM TRAINER</a>
+                <nav>
+                    <a href="/app">&lt; Back</a>
+                    <a href="/">Log out</a>
+                </nav>
+            </div>
+        </header> 
+        <main>
+            <section class="test-list small">
+                <p class="test-name">Editing untitled test. <button class="link">Rename</button></p>
+                <div class="question">
+                    <div contenteditable="true" class="question-item question-title">Example question 1.</div>
+                    <ul class="question-item">
+                        <li contenteditable="true" class="correct">Correct answer</li>
+                        <li contenteditable="true">Wrong answer</li>
+                        <li class="none"><button class="link">+ Add wrong answer</button></li>
+                    </ul>
+                    <div class="container-separator mobile-tablet"></div>
+                    <button class="link question-item mobile-tablet">Show advanced options</button>
+                </div>
+                <div class="advanced pc">
+                    <div class="question-item question-title">Advanced options</div>
+                    <div class="question-item list">
+                        <div><button class="link">Make multiple choice</button></div>
+                        <div><button class="link">Make open-ended question</button></div>
+                        <div><button class="link error">Delete question</button></div>
+                    </div>
+                </div>
+                <div class="tile">
+                    <button class="link">+ Add question</button>
+                </div>
+            </section>
+        </main>
+        <footer>
+            Demo, made by Vít Sebastian Kavka.
+        </footer>
+    </body>
+</html>
