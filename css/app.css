@@ -5,7 +5,15 @@
     flex-flow: row;
 }
 
+.fancy-border {
+    background: linear-gradient(var(--background-container), var(--background-container)) padding-box,
+    linear-gradient(var(--primary-lighter), var(--primary-darker)) border-box;
+    border: var(--border-thickness) solid transparent;  
+}
+
 .dashboard .tile {
+    display: flex;
+    flex-flow: column;
     background-color: var(--background-container);
     border-radius: 1rem;
     padding: 1rem 1rem;
@@ -37,11 +45,18 @@
     gap: 4px;
 }
 
-section.dashboard {
+section.dashboard.dashboard-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: min-content min-content;
     grid-auto-rows: 96px;
+    padding: 1rem 1rem 3rem;
+    gap: 1rem;
+    align-self: center;
+}
+section.dashboard.dashboard-list {
+    display: flex;
+    flex-flow: column;
     padding: 1rem 1rem 3rem;
     gap: 1rem;
     align-self: center;
@@ -69,6 +84,30 @@ section.dashboard .large {
     text-align: inherit;
 }
 
+.dashboard .tile.square {
+    height: 96px;
+    width: 96px;
+
+    cursor: pointer;
+    text-decoration: none;
+    transition: filter .25s;
+}
+.dashboard .tile.small-button {
+    min-height: inherit;
+    width: inherit;
+    padding-right: 8rem;
+
+    cursor: pointer;
+    text-decoration: none;
+    transition: filter .25s;
+}
+
+.dashboard .mini-buttons {
+    display: flex;
+    flex-flow: row;
+    gap: 1rem;
+}
+
 .dashboard .tile.button {
     cursor: pointer;
     background: linear-gradient(var(--background-container), var(--background-container)) padding-box,
@@ -86,8 +125,11 @@ section.dashboard .large {
     transition: transform .25s;
 }
 
+.dashboard .tile.square:hover, .dashboard .tile.small-button:hover {
+    filter: brightness(.95);
+}
 
-.dashboard .tile.button:hover svg {
+.dashboard .tile.button:hover svg, .dashboard .tile.square:hover svg, .dashboard .tile.small-button:hover svg {
     transform: translate(-150%, -150%)  rotate(-30deg) scale(5);
 }
 
@@ -131,6 +173,24 @@ section.dashboard .large {
     gap: .5rem;
     padding-bottom: .5rem;
 }
+/* .question.fancy-border ul {
+    padding-top: .5rem;
+    gap: 1rem;
+} */
+
+.question li {
+    display: flex;
+}
+
+.question.fancy-border li {
+    padding: .5rem;
+    cursor: pointer;
+    transition: background-color .25s;
+    border-radius: .5rem;
+}
+.question.fancy-border li:hover, .question.fancy-border li:active {
+    background-color: color-mix(in srgb, var(--primary-darker) 10%, transparent);
+}
 
 .question li::before {
     content: "";
@@ -150,6 +210,15 @@ section.dashboard .large {
 
 .question li.none::before {
     content: none;
+}
+
+.question.fancy-border li::before {
+    background-color: var(--primary-darker);
+}
+
+.question .numbering {
+    display: block;
+    padding-right: 1rem;
 }
 
 .test-list .test-name,
@@ -176,6 +245,15 @@ section.dashboard .large {
     gap: .5rem;
 }
 
+.test-entry {
+    display: flex;
+    flex-flow: row;
+    gap: 1rem;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
 
 @media (width >= 992px) {
     section.dashboard .wide {
@@ -187,4 +265,61 @@ section.dashboard .large {
     section.test-list {
         width: 960px;
     }
+}
+
+@media (width < 768px) {
+    .dashboard .test-entry {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: max-content;
+    }
+    .dashboard .test-entry .flex-grow {
+        grid-column: 1 / -1;
+    }
+    .dashboard .test-entry .tile.square {
+        height: max-content;
+        min-height: max-content;
+        width: inherit;
+    }
+    .dashboard .test-entry .tile.square svg {
+        display: none;
+    }
+    
+    .mini-buttons .small-button {
+        flex-grow: 1;
+    }
+}
+@media (width < 992px) {
+    .question.fancy-border li {
+        background-color: color-mix(in srgb, var(--primary-darker) 5%, transparent);
+    }
+}
+
+
+/* COLORS */
+
+.color-red {
+    --primary-lighter: #d99a8c;
+    --primary:         #d84727;
+    --primary-darker:  #7a2f1f;
+}
+.color-yellow {
+    --primary-lighter: #e8d37d;
+    --primary:         #d9b526;
+    --primary-darker:  #a48713;
+}
+/* .color-blue {
+    --primary-lighter: #8ebebe;
+    --primary:         #439696;
+    --primary-darker:  #037171; 
+} */
+.color-green {
+    --primary-lighter: #8cd9ac;
+    --primary:         #36bb6e;
+    --primary-darker:  #1f7a45;
+}
+.color-purple {
+    --primary-lighter: #c794d1;
+    --primary:         #8d5a97;
+    --primary-darker:  #4f2956;
 }

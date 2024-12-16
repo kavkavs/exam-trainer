@@ -5,19 +5,45 @@
     inset: 0;
 }
 
+@property --background-lighter {
+    syntax: '<color>';
+    initial-value: #c6cfda;
+    inherits: true;
+}
+@property --background-darker {
+    syntax: '<color>';
+    initial-value: #E1E8F0;
+    inherits: true;
+}
+@property --background-container {
+    syntax: '<color>';
+    initial-value: #F9FAFC;
+    inherits: true;
+}
+@property --shadow-percentage-header {
+    syntax: '<percentage>';
+    initial-value: 35%;
+    inherits: true;
+}
+@property --shadow-percentage-box {
+    syntax: '<percentage>';
+    initial-value: 25%;
+    inherits: true;
+}
+
 body {
     display: flex;
     flex-flow: column;
-    height: 100svh;
+    min-height: 100svh;
 
-    background-color: var(--background-darker);
 
     font-family: "Rubik", sans-serif;
     font-optical-sizing: auto;
 
     /* VARIABLES */
     --primary: #439696;
-    --error: #964343;
+    /* --error: #964343; */
+    --error: #a33636;
     --primary-lighter: #8ebebe;
     --primary-darker: #037171;
     
@@ -26,6 +52,11 @@ body {
     --background-container: #F9FAFC;
     
     --border-thickness: 1px;
+
+    background-color: var(--background-darker);
+    background: linear-gradient(var(--background-darker), var(--background-lighter));
+
+    transition: --primary-lighter .5s, --primary-darker .5s, --background-lighter .5s, --background-darker .5s, --background-container .5s, color .5s;
 }
 
 .error {
@@ -85,7 +116,7 @@ header {
 }
 
 header button.link, header a:not(.button) {
-    color: black;
+    color: inherit;
 }
 
 header::after {
@@ -104,7 +135,7 @@ header .header-content {
     padding: 1rem;
     display: flex;
     justify-content: space-between;
-    box-shadow: 0 0 32px 0 color-mix(in srgb, var(--primary) 35%, transparent);
+    box-shadow: 0 0 32px 0 color-mix(in srgb, var(--primary) var(--shadow-percentage), transparent);
 
     background: linear-gradient(var(--background-container), var(--background-container)) padding-box,
     linear-gradient(var(--primary-lighter), var(--primary-darker)) border-box;
@@ -123,7 +154,7 @@ main {
     flex-grow: 1;
     padding-top: 6rem;
     max-width: 100%;
-    background: linear-gradient(var(--background-darker), var(--background-lighter));
+
 }
 
 section {
@@ -169,7 +200,7 @@ button:not(.link), a.button {
     padding: .2rem .6rem;
     height: 48px;
     
-    color: black;
+    color: inherit;
     background-color: var(--background-container);
     
     background: linear-gradient(var(--background-container), var(--background-container)) padding-box,
@@ -189,6 +220,7 @@ button:not(.link):hover, a.button:hover {
 }
 
 input {
+    color: inherit;
     font-family: inherit;
     font-size: 1.5rem;
     background: rgba(0, 0, 0, .05);
@@ -198,6 +230,7 @@ input {
     width: 100%;
     height: 48px;
     border-radius: 1rem;
+    transition: color .5s, background-color .5s;
 }
 
 
@@ -209,6 +242,9 @@ input {
     margin: 1rem;
     border-radius: 1rem;
     align-self: center;
+
+    box-shadow: 0 0 32px 0 color-mix(in srgb, var(--primary) 5%, transparent);
+
 }
 
 form {
@@ -226,4 +262,22 @@ h1 {
     font-size: 2rem;
     text-transform: uppercase;
     padding-bottom: 1rem;
+}
+
+.primary {
+    color: var(--primary);
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        color: #e6e6e6;
+        --background-lighter: #070a0e;
+        --background-darker: #14191f;
+        --background-container: #22272f;
+        --shadow-percentage: 20%;
+        --shadow-percentage: 10%;
+    }
+    input {
+        background-color: rgba(255, 255, 255, .1);
+    }
 }

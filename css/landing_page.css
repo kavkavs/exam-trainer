@@ -43,7 +43,7 @@ section.hero {
     height: var(--tile-size);
     border-radius: 2rem;
     background-color: var(--background-container);
-    box-shadow: 0 0 32px 0 color-mix(in srgb, var(--primary) 25%, transparent);
+    box-shadow: 0 0 32px 0 color-mix(in srgb, var(--primary) var(--shadow-percentage-box), transparent);
     padding: 2rem 1rem;
     
     background: linear-gradient(var(--background-container), var(--background-container)) padding-box,
